@@ -13,7 +13,7 @@ const filmes = [
     imagem: "https://flxt.tmsimg.com/assets/p7825626_p_v10_af.jpg",
     genero: "Ação / Aventura",
     nota: 8.8,
-    assistido: "false",
+    assistido: false,
   },
   {
     id: 1,
@@ -21,7 +21,7 @@ const filmes = [
     imagem: "https://br.web.img3.acsta.net/pictures/14/10/31/20/39/476171.jpg",
     genero: "Aventura / Drama",
     nota: 8.6,
-    assistido: "false",
+    assistido: false,
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const filmes = [
       "https://m.media-amazon.com/images/M/MV5BMTQ5NjQ0NDI3NF5BMl5BanBnXkFtZTcwNDI0MjEzMw@@._V1_.jpg",
     genero: "Biografia / Drama",
     nota: 8.0,
-    assistido: "false",
+    assistido: false,
   },
 ];
 
@@ -45,29 +45,36 @@ app.get("/:id", (req, res) => {
 
 app.post("/create", (req, res) => {
   const { nome, imagem, genero, nota } = req.body;
+  console.log(nome);
   const filme = {
     id: filmes.length,
     nome: nome,
     imagem: imagem,
     genero: genero,
     nota: parseFloat(nota),
-    assistido: "false",
+    assistido: false,
   };
   filmes.push(filme);
+  console.log(filmes);
   res.send(filmes);
 });
 
 app.put("/update/:id", (req, res) => {
   const id = req.params.id;
-  const { nome, imagem, genero, nota } = req.body;
-  filmes[id] = {
-    id: id,
-    nome: nome,
-    imagem: imagem,
-    genero: genero,
-    nota: parseFloat(nota),
-    assistido: "false",
-  };
+  const { nome, imagem, genero, nota, status } = req.body;
+  if (status) {
+    filmes[id].assistido = status;
+    console.log(filmes[id]);
+  } else {
+    filmes[id] = {
+      id: id,
+      nome: nome,
+      imagem: imagem,
+      genero: genero,
+      nota: parseFloat(nota),
+      assistido: false,
+    };
+  }
   res.send(filmes);
 });
 
