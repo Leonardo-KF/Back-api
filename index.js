@@ -45,7 +45,7 @@ app.get("/:id", (req, res) => {
 
 app.post("/create", (req, res) => {
   const { nome, imagem, genero, nota } = req.body;
-  console.log(nome);
+
   const filme = {
     id: filmes.length,
     nome: nome,
@@ -55,16 +55,15 @@ app.post("/create", (req, res) => {
     assistido: false,
   };
   filmes.push(filme);
-  console.log(filmes);
+
   res.send(filmes);
 });
 
 app.put("/update/:id", (req, res) => {
   const id = req.params.id;
-  const { nome, imagem, genero, nota, status } = req.body;
-  if (status) {
-    filmes[id].assistido = status;
-    console.log(filmes[id]);
+  const { nome, imagem, genero, nota, assistido } = req.body;
+  if (assistido === true) {
+    filmes[id].assistido = assistido;
   } else {
     filmes[id] = {
       id: id,
@@ -75,6 +74,7 @@ app.put("/update/:id", (req, res) => {
       assistido: false,
     };
   }
+
   res.send(filmes);
 });
 
