@@ -1,10 +1,15 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const conn = require("./conn/conn");
+
+conn();
 
 app.use(express.json());
 
 app.use(cors());
+
+const user = require("./model/user");
 
 const filmes = [
   {
