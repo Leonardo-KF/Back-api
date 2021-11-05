@@ -11,7 +11,7 @@ const corsOptions = {
 
 app.use(express.json());
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // const user = require("./model/user");
 
