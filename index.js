@@ -1,15 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const conn = require("./conn/conn");
+// const conn = require("./conn/conn");
 
-conn();
+// conn();
+
+const corsOptions = {
+  origin: "https://leonardo-kf.github.io/front-api-project.github.io/",
+};
 
 app.use(express.json());
 
-app.use(cors());
+app.use(cors(corsOptions));
 
-const user = require("./model/user");
+// const user = require("./model/user");
 
 const filmes = [
   {
