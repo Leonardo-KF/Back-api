@@ -6,7 +6,7 @@ const app = express();
 // conn();
 
 const corsOptions = {
-  origin: "https://leonardo-kf.github.io/front-api-project.github.io/",
+  origin: "https://leonardo-kf.github.io",
 };
 
 app.use(express.json());
